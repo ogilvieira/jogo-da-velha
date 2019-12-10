@@ -25,7 +25,6 @@ function JogoDaVelha(el) {
 		_self.$el.classList = "";
 		_self.winner = null;
 		_self.isPlay = true;
-		obj.setPlayer(_self.turn == 1 ? 0 : 1);
 		if(_self.turn == 1){ obj.machinePlay(); }
 	}
 
