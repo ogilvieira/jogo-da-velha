@@ -1,0 +1,164 @@
+* {
+	box-sizing: border-box;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+body {
+	background: #ccc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+#tabuleiro #btnReset {
+	display: block;
+	width: 100%;
+	appearance: none;
+	margin: .5em 0;
+	border: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	padding: .5em;
+	border-radius: 4px;
+	color: white;
+	background: red;
+}
+
+#tabuleiro #header {
+	font-size: 1.2rem;
+	text-align: center;
+	padding: .5em 0;
+}
+
+#tabuleiro .buttons {
+	width: 300px;
+	height: 300px;
+	background: white;
+	display: block;
+	border-radius: 4px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-gap: 4px;
+	padding: 4px;
+	position: relative;
+}
+
+#tabuleiro.winner .buttons::after {
+	content: "";
+	display: block;
+	width: 10px;
+	height: 100%;
+	background: red;
+	position: absolute;
+	z-index: 1;
+	border-radius: 10px;
+	transform: translate(-50%, 0);
+}
+
+#tabuleiro.winner-row_1 .buttons::after {
+	left: 16.65%;
+}
+
+#tabuleiro.winner-row_2 .buttons::after {
+	left: 49.95%;
+}
+
+#tabuleiro.winner-row_3 .buttons::after {
+	left: 83.25%;
+}
+
+#tabuleiro.winner-col_1 .buttons::after,
+#tabuleiro.winner-col_2 .buttons::after,
+#tabuleiro.winner-col_3 .buttons::after {
+	width: 100%;
+	height: 10px;
+	transform: translate(0, -50%);
+	left: 0;
+}
+
+#tabuleiro.winner-col_1 .buttons::after {
+	top: 16.65%;
+}
+#tabuleiro.winner-col_2 .buttons::after {
+	top: 49.95%;
+}
+#tabuleiro.winner-col_3 .buttons::after {
+	top: 83.25%;
+}
+
+#tabuleiro.winner-diagonal_1 .buttons::after,
+#tabuleiro.winner-diagonal_2 .buttons::after {
+	top: 50%;
+	left: 50%;
+}
+
+#tabuleiro.winner-diagonal_1 .buttons::after {
+	transform: translate(-50%, -50%) rotate(-45deg); 
+}
+
+#tabuleiro.winner-diagonal_2 .buttons::after {
+	transform: translate(-50%, -50%) rotate(45deg); 
+}
+
+
+#tabuleiro.is-locked .buttons { pointer-events: none; }
+
+#tabuleiro .buttons button {
+	display: block;
+	height: 100%;
+	width: 100%;
+	appearance: none;
+	background: whitesmoke;
+	border: 1px solid whitesmoke;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	margin: 0;
+	font-weight: bold;
+	font-size: 3rem;
+	color: #444;
+	transition: .1s all linear;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 4px;
+}
+
+#tabuleiro .buttons button.is-active {
+	background: #444;
+	color: whitesmoke;
+}
+
+#tabuleiro .buttons button:not(.is-active):hover {
+	transform: scale(1.5);
+}
+
+#tabuleiro.winner{
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-5%, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(5%, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-15%, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(15%, 0, 0);
+  }
+}
